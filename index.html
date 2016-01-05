@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US" class="ie ie6 lt-ie9">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US" class="ie ie7 lt-ie9">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US" class="ie ie8 lt-ie9">
+<![endif]-->
+<!--[if gte IE 9]>
+<html lang="en-US" class="ie ie9">
+<![endif]-->
+<!--[if !(IE)]><!-->
+<html lang="en-US" class="">
+<!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0 minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="marcolago">
+
+    <meta property="og:title" content="Visualizing Git Internals">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://abargnesi.github.io/visualizing-git-internals">
+    <meta property="og:site_name" content="Visualizing Git Internals">
+
+    <meta name="description" content="Visualizing Git Internals is a talk on exploring basic Git structures using fun construction paper.">
+
+    <title>Visualizing Git Internals</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="css/flowtime.css">
+    <link rel="stylesheet" href="css/themes/default.css">
+    <link rel="stylesheet" href="css/themes/syntax.css">
+
+    <link rel="apple-touch-icon-precomposed"                         href="img/touch-icon-iphone.png">
+    <link rel="apple-touch-icon-precomposed"     sizes="72x72"         href="img/touch-icon-ipad.png">
+    <link rel="apple-touch-icon-precomposed"     sizes="114x114"     href="img/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon-precomposed"     sizes="144x144"     href="img/touch-icon-ipad-retina.png">
+
+    <link rel="apple-touch-startup-image" href="img/startup-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)">
+    <link rel="apple-touch-startup-image" href="img/startup-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)">
+</head>
+<body class="">
+
+    <div class="flowtime">
+        <div class="ft-section" data-id="section-1">
+            <div id="/section-1/page-1" class="ft-page" data-id="page-1" data-title="Title">
+                <div class="stack-center">
+                    <div class="stacked-center">
+                        <h1 class="page-title">Visualizing Git Internals</h1>
+                        <p><a href="http://abargnesi.github.io/visualizing-git-internals">abargnesi.github.io/visualizing-git-internals</a></p>
+                    </div>
+                </div>
+            </div>
+            <div id="/section-1/page-2" class="ft-page" data-id="page-2" data-title="Goal">
+                <h1 class="page-title">The goal</h1>
+                <p>To provide you with a visual model for understanding Git internals.</p>
+            </div>
+            <div id="/section-1/page-3" class="ft-page" data-id="page-3" data-title="Lineup">
+                <h1 class="page-title">Lineup</h1>
+                <ul>
+                    <li>Version control</li>
+                    <li>Git</li>
+                    <li>Visual models<ul>
+                        <li>First commit in depth</li>
+                        <li>Referencing your commits with tags and branches</li>
+                        <li>Merging branches</li>
+                    </ul>
+                </ul>
+            </div>
+            <div id="/section-1/page-4" class="ft-page" data-id="page-4" data-title="Version control">
+                <h1>Version Control (<span><a href="https://en.wikipedia.org/wiki/Version_control">wikipedia</a></span>)</h1>
+                <br/>
+                <h2>What is it?</h2>
+                <ul>
+                    <li>Tracking revisions of data over time (e.g. in files).</li>
+                    <li>Each revision preserves author and timestamp for each change.</li>
+                    <li>Allows multiple users to work and merge each other's changes.</li>
+                </ul>
+                <h2>Why do we do it?</h2>
+                <ul>
+                    <li>Capture logical sets of changes in your project.</li>
+                    <li>Try out different things within your project.</li>
+                    <li>Working with other programmers on a project.</li>
+                </ul>
+            </div>
+            <div id="/section-1/page-5" class="ft-page" data-id="page-5" data-title="Git">
+                <h1>Git (<span><a href="http://git-scm.com/">website</a></span>) (<a href="https://en.wikipedia.org/wiki/Git_%28software%29">wikipedia</a>)</h1>
+                <ul>
+                    <li>Fast, scalable, distributed</li>
+                    <li>Numerous commands; high-level (porcelain) and low-level (plumbing)</li>
+                    <li>Intuitive file system structure for repository</li>
+                </ul>
+                <hr/>
+                <br/>
+                <ul>
+                    <li>Invented by Linus Torvalds (and other Linux kernel developers) in 2005, out of need to support Linux kernel development.</li>
+                    <li>Maintained by Junio Hamano (working at Google) since 2007.</li>
+                    <li>1,000 contributors</li>
+                    <li>11,000 GitHub ☆</li>
+                    <li>Easily the most popular version control system.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://github.com/marcolago/flowtime.js"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1000;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
+
+    <script src="js/brav1toolbox.js"></script>
+    <script src="js/flowtime.js"></script>
+    <script src="assets/js/prism.js"></script>
+
+    <script type="text/javascript">
+        var cacheTitle = document.title.replace("Flowtime.js | ", "");
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-1228618-10']);
+        _gaq.push(['_trackPageview']);
+        _gaq.push(['_trackEvent', 'Flowtime', 'Landing', document.title]);
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        // Configuration API test
+        Flowtime.showProgress(true);
+        // Flowtime.fragmentsOnSide(true);
+        // Flowtime.fragmentsOnBack(true);
+        // Flowtime.useHistory(false);
+        // Flowtime.slideInPx(true);
+        // Flowtime.sectionsSlideToTop(true);
+        // Flowtime.gridNavigation(false);
+        // Flowtime.useOverviewVariant(true);
+        Flowtime.parallaxInPx(true);
+        //
+        // event management
+        // Flowtime.addEventListener("flowtimenavigation", onNavigation, false);
+        Flowtime.onNavigation(onNavigation);
+        function onNavigation(e)
+        {
+            _gaq.push(['_trackEvent', 'Flowtime', 'Navigation', cacheTitle + ' > ' + document.title.replace("Flowtime.js | ", "")]);
+            // console.log(cacheTitle + ' > ' + document.title.replace("Flowtime.js | ", ""));
+            cacheTitle = document.title.replace("Flowtime.js | ", "");
+            //console.log('section', e.section, 'sectionIndex', e.sectionIndex);
+            //console.log('page', e.page, 'pageIndex', e.);
+            //console.log('pastSectionIndex', e.pastSectionIndex, 'pastPageIndex', e.pastPageIndex);
+            //console.log('prevSection', e.prevSection);
+            //console.log('nextSection', e.nextSection);
+            //console.log('prevPage', e.prevPage);
+            //console.log('nextPage', e.nextPage);
+            //console.log('fragment', e.fragment, + 'fragmentIndex', e.fragmentIndex);
+            //console.log("isOverview", e.isOverview);
+            //console.log('progress:', e.progress, 'total:', e.total);
+            // var value = Math.round(e.progress * 100 / e.total);
+            // console.log('Completion: ' + value + '%');
+        }
+        // starts the application with configuration options
+        Flowtime.start();
+    </script>
+    <script type="text/javascript" src="http://slidemote.jit.su/slidemote.js#flowtime"></script>
+</body>
+</html>
+<!--
+    vim: ft=html ts=4 sts=4 sw=4 expandtab
+-->

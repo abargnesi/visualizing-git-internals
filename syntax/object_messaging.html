@@ -1,0 +1,21 @@
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">the_widget_machine</span>
+
+  <span class="kp">loop</span> <span class="k">do</span>
+    <span class="k">yield</span> <span class="s2">&quot;widget_</span><span class="si">#{</span><span class="nb">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">the_widget_machine</span> <span class="k">do</span> <span class="o">|</span><span class="n">widget</span><span class="o">|</span>
+
+  <span class="n">the_widget_observers</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">observer</span><span class="o">|</span>
+
+    <span class="n">receiver</span> <span class="o">=</span> <span class="s2">&quot;process_</span><span class="si">#{</span><span class="n">widget</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">if</span> <span class="n">solicit</span>
+      <span class="n">observer</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="n">widget</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="n">observer</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="n">widget</span><span class="p">)</span> <span class="k">if</span> <span class="n">observer</span><span class="o">.</span><span class="n">respond_to?</span> <span class="n">receiver</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
